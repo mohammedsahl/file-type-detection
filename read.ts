@@ -1,5 +1,6 @@
  import { fileTypeHandler } from './fileTypeHandler';
  import * as fs from 'fs';
+ import {Trie, trieNode} from './trie';
 
 const signatureToType: { [byte: number]: string} = {
     0x50: 'zip',
@@ -11,7 +12,6 @@ const signatureToType: { [byte: number]: string} = {
 const keys = Object.keys(fileTypeHandler);
 
 const read = (buffer: Buffer): string  => {
-    const byte = buffer[0]
     for (const key of keys) {
         if (fileTypeHandler[key].validate(buffer)) {
             return (`${signatureToType[fileTypeHandler[key].signature]}`);

@@ -1,5 +1,6 @@
 {
     "scripts": {
-        "start": "tsc read.ts && node read.js && rm *.js" 
+        "start": "tsc read.ts && node read.js && rm *.js",
+        "old":  "tsc fileType.ts && node fileType.js && rm *.js"
     }
 }
