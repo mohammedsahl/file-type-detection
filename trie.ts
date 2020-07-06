@@ -21,17 +21,34 @@ class Trie {
 
     private _walkInsert(node: trieNode, string: string, index: number): trieNode {
         if (index === string.length - 1) {
-            return (node[string[index]] = {
-                value: string
-            })
+            return (node[string[index]] = { value: string })
         } else {
             if (!node[string[index]]) {
-                node[string[index]]
+                node[string[index]] = { value: string.slice(0, index + 1) }
+            }
+
+            node[string[index]][string[index + 1]] = {
+                ...node[string[index]][string[index + 1]],
+                ...this._walkInsert(node[string[index]], string, index + 1)
             }
         }
+
+        return node[string[index]];
     }
 
-    private _walkSearch(string: string, node: trieNode, index: number): void {}
+    private _walkSearch(string: string, node: trieNode, index: number): string {
+        if (!node) {
+            console.error("Not there lul!");
+            return "INVALID";
+        }
+
+        if (index === string.length) {
+            console.log("Got em'");
+            return node.value;
+        } else {
+            return this._walkSearch(string, node[string[index]], index + 1);
+        }
+    }
 
     public insert(string: string): void {}
 
