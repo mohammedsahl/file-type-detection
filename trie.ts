@@ -1,17 +1,17 @@
-class trieNode {
+export class trieNode {
     value: string;
 }
 
-class Trie {
-    private tree: any;
+export class Trie {
+    private tree: trieNode;
     constructor() {
-        this.tree = {};
+        this.tree = new trieNode();
     }
     private _walk(keys: string[], node: trieNode, level: number): void {
         keys = keys.filter(key => key !== "value");
-        for (const [index, key] of keys.entries()) {
+        for (let [index, key] of keys.entries()) {
             //Prints values with indentation
-            console.log(`${"\t".repeat(level - 1)} -> ${level}.${index + 1} ${node[key].value}`);
+            console.log(`${"| ".repeat(level - 1)}|-> ${level}.${index + 1} ${node[key].value}`);
             
             //Recursion step
             this._walk(Object.keys(node[key]), node[key], level + 1);
@@ -50,11 +50,27 @@ class Trie {
         }
     }
 
-    public insert(string: string): void {}
+    public insert(string: string): void {
+        this._walkInsert(this.tree, string, 0)
+    }
 
-    public search(string: string): void {}
+    public search(string: string): void {
+        console.log(this._walkSearch(string, this.tree, 0));
+    }
 
-    public delete(string: string): void {}
-    
-    public printAll(): void {}
+    public print(): void {
+        console.log("Tree");
+        this._walk(Object.keys(this.tree), this.tree, 1);
+    }
 }
+
+const testTrie = new Trie();
+testTrie.insert("test");
+testTrie.insert("teseract");
+testTrie.insert("tennis");
+testTrie.insert("testing");
+testTrie.insert("insertion");
+testTrie.insert("insert");
+testTrie.insert("inseparable");
+testTrie.insert("international");
+testTrie.print();

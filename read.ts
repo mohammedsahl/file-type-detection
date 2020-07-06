@@ -1,5 +1,6 @@
  import { fileTypeHandler } from './fileTypeHandler';
  import * as fs from 'fs';
+ import {Trie, trieNode} from './trie';
 
 const signatureToType: { [byte: number]: string} = {
     0x50: 'zip',
