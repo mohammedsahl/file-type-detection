@@ -1,3 +1,4 @@
+// File meant to be run on its own
 import * as fs from 'fs'
 
 enum FileType {
@@ -21,5 +22,5 @@ function read(buffer: Buffer): void {
   }
 }
 
-const path: string = 'test.docx'
+const path: string = './testFiles/test.doc'
 readFile(path);

@@ -11,7 +11,6 @@ const signatureToType: { [byte: number]: string} = {
 const keys = Object.keys(fileTypeHandler);
 
 const read = (buffer: Buffer): string  => {
-    const byte = buffer[0]
     for (const key of keys) {
         if (fileTypeHandler[key].validate(buffer)) {
             return (`${signatureToType[fileTypeHandler[key].signature]}`);
