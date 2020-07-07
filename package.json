@@ -2,6 +2,6 @@
     "scripts": {
         "start": "tsc read.ts && node read.js && rm *.js",
         "old":  "tsc fileType.ts && node fileType.js && rm *.js",
-        "trie": "tsc trie.ts && node trie.js && rm *.js",
+        "trie": "tsc --downlevelIteration trie.ts && node trie.js && rm *.js",
     }
 }
